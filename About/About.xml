@@ -24,7 +24,20 @@
         <li>RegionsAndSocieties.Core</li>
         <li>TSA.WorldDominationExperimental</li>
     </loadAfter>
-    <description>Compatibility patch: World Domination 2.0 bases, turrets and travelers are classified, populated and owned under Regions and Societies territory rules.
+    <description>Version: v0.1.0
 
-This patch binds directly against World Domination's assembly, so its world objects are recognised by real type rather than by name guessing. Requires both Regions and Societies and World Domination 2.0.</description>
+Compatibility patch: World Domination 2.0 bases, turrets and travelers are classified, populated and owned under Regions and Societies territory rules.
+
+Features:
+- Typed sorting: travelers (raids, drop pods, road builders, purchase parties) count as caravans; WD outposts hold ground with their real pawn count as population.
+- Turrets hold ground: automated turrets classify as military installations that hold territory.
+- Ruins release territory: a destroyed World Domination settlement becomes scenery and stops claiming its region.
+
+Requires: Regions and Societies and World Domination 2.0. No settings of its own - governance toggles live in Regions and Societies.
+
+--- Changelog (v0.1.0) ---
+- Initial release: World Domination integration extracted from Regions and Societies core into a typed compatibility patch binding World Domination's assembly directly.
+
+Source: https://github.com/Regions-and-societies/World-Domination-CP
+Support development: https://ko-fi.com/archdukejim</description>
 </ModMetaData>

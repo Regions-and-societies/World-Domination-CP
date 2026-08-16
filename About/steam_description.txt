@@ -1,0 +1,31 @@
+[b]Version:[/b] v0.1.0 (Target: RimWorld 1.6)
+
+[img]https://i.imgur.com/6JSqNqJ.png[/img]
+
+[h1]Regions and Societies: World Domination Patch[/h1]
+Compatibility patch: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3680501610]World Domination 2.0[/url] bases, turrets and travelers are classified, populated and owned under [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3784666060]Regions and Societies[/url] territory rules.
+
+[h2]What it does[/h2]
+[list]
+[*] [b]Typed world object sorting:[/b] travelers (raids, drop pods, road builders, purchase parties) count as caravans; WD outposts hold ground with their real pawn count as population.
+[*] [b]Turrets hold ground:[/b] automated turrets classify as military installations that hold territory rather than being flattened into generic outposts.
+[*] [b]Ruins release territory:[/b] a destroyed World Domination settlement becomes scenery - it stops claiming its region instead of holding it forever.
+[/list]
+
+The patch binds World Domination's assembly directly, so type drift is a compile error rather than a silent zero in-game. No settings of its own - installed means enabled.
+
+[h2]Changelog (v0.1.0)[/h2]
+[list]
+[*] Initial release: World Domination integration extracted from Regions and Societies core into a typed compatibility patch binding World Domination's assembly directly.
+[/list]
+
+[h2]Requirements[/h2]
+[list]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3784666060]Regions and Societies[/url]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3680501610]World Domination 2.0[/url]
+[/list]
+
+[h2]Source Code and Support[/h2]
+GitHub: [url]https://github.com/Regions-and-societies/World-Domination-CP[/url]
+Licence: [url=https://polyformproject.org/licenses/noncommercial/1.0.0/]PolyForm Noncommercial License 1.0.0[/url]
+Support development: [url]https://ko-fi.com/archdukejim[/url]
