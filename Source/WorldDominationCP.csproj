@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="GamePath.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <AssemblyName>RegionsAndSocieties.WorldDominationCP</AssemblyName>
+        <RootNamespace>RegionsAndSocieties.WorldDominationCP</RootNamespace>
+        <LangVersion>9.0</LangVersion>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>..\Assemblies\</OutputPath>
+        <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(RimWorldPath)\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(RimWorldPath)\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>$(HarmonyPath)\0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="RegionsAndSocieties">
+            <HintPath>$(RegionsAndSocietiesPath)\RegionsAndSocieties.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="TSA_WorldDomination">
+            <HintPath>$(WorldDominationPath)\TSA_WorldDomination.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <!-- The Outposts assembly ships inside Vanilla Expanded Framework (VFE Core), which World
+             Domination hard-depends on — its outpost type derives from Outposts.Outpost. -->
+        <Reference Include="Outposts">
+            <HintPath>$(SteamWorkshopPath)\2023507013\1.6\Assemblies\Outposts.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+</Project>

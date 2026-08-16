@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <name>Regions and Societies: World Domination Patch</name>
+    <author>Regions and Societies Team</author>
+    <packageId>RegionsAndSocieties.WorldDominationCP</packageId>
+    <url>https://github.com/Regions-and-societies/World-Domination-CP</url>
+    <modVersion>0.1.0</modVersion>
+    <supportedVersions>
+        <li>1.6</li>
+    </supportedVersions>
+    <modDependencies>
+        <li>
+            <packageId>RegionsAndSocieties.Core</packageId>
+            <displayName>Regions and Societies</displayName>
+            <downloadUrl>https://github.com/Regions-and-societies/Core-MMF/releases/latest</downloadUrl>
+        </li>
+        <li>
+            <packageId>TSA.WorldDominationExperimental</packageId>
+            <displayName>World Domination 2.0</displayName>
+            <steamWorkshopUrl>steam://url/CommunityFilePage/3680501610</steamWorkshopUrl>
+        </li>
+    </modDependencies>
+    <loadAfter>
+        <li>RegionsAndSocieties.Core</li>
+        <li>TSA.WorldDominationExperimental</li>
+    </loadAfter>
+    <description>Compatibility patch: World Domination 2.0 bases, turrets and travelers are classified, populated and owned under Regions and Societies territory rules.
+
+This patch binds directly against World Domination's assembly, so its world objects are recognised by real type rather than by name guessing. Requires both Regions and Societies and World Domination 2.0.</description>
+</ModMetaData>
