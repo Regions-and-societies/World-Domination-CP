@@ -25,14 +25,23 @@ namespace RegionsAndSocieties.WorldDominationCP
                 for (int i = 0; i < objects.Count; i++)
                 {
                     WorldObject obj = objects[i];
-                    if (obj == null || obj.GetType().Namespace != "TSA_WorldDomination") continue;
+                    if (obj == null) continue;
+
+                    int lvl, maxLvl;
+                    bool hasLevel = WorldObjectAdapterRegistry.TryGetLevel(obj, out lvl, out maxLvl);
+
+                    // WD's own typed world objects, plus the vanilla Settlements this adapter now
+                    // grades — so tier→level parity is verifiable here alongside the typed objects.
+                    bool isWdType = obj.GetType().Namespace == "TSA_WorldDomination";
+                    if (!isWdType && !hasLevel) continue;
 
                     count++;
                     WorldObjectKind kind;
                     WorldObjectAdapterRegistry.TryClassify(obj, out kind);
                     int pop;
                     bool hasPop = WorldObjectAdapterRegistry.TryGetPopulation(obj, out pop);
-                    sb.AppendLine($"  {obj.GetType().Name,-40} tile={obj.Tile,-7} kind={kind,-10} pop={(hasPop ? pop.ToString() : "-"),-5} faction={obj.Faction?.Name ?? "none"}");
+                    string levelText = hasLevel ? $"{lvl}/{maxLvl}" : "-";
+                    sb.AppendLine($"  {obj.GetType().Name,-32} tile={obj.Tile,-7} kind={kind,-10} pop={(hasPop ? pop.ToString() : "-"),-5} level={levelText,-5} faction={obj.Faction?.Name ?? "none"}");
                 }
             }
             sb.AppendLine($"{count} World Domination world object(s).");
