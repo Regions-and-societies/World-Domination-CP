@@ -4,17 +4,17 @@
     <author>Regions and Societies Team</author>
     <packageId>RegionsAndSocieties.WorldDominationCP</packageId>
     <url>https://github.com/Regions-and-societies/World-Domination-CP</url>
-    <modVersion>0.1.0</modVersion>
+    <modVersion>0.2.0</modVersion>
     <supportedVersions>
         <li>1.6</li>
     </supportedVersions>
     <modDependencies>
-        <li>
-            <packageId>RegionsAndSocieties.Core</packageId>
-            <displayName>Regions and Societies</displayName>
-            <downloadUrl>https://github.com/Regions-and-societies/Core-MMF/releases/latest</downloadUrl>
-            <steamWorkshopUrl>steam://url/CommunityFilePage/3784666060</steamWorkshopUrl>
-        </li>
+        <!-- No hard dependency on a Regions and Societies core: the two editions
+             (RegionsAndSocieties.Core on Map Mode Framework, RegionsAndSocieties.CoreRP2 on
+             Realistic Planets 2) are mutually exclusive and modDependencies cannot express
+             "either of" — declaring one falsely flags the other edition's users with a
+             missing-dependency warning. The mod entry class warns in-game instead when no
+             edition is loaded. -->
         <li>
             <packageId>TSA.WorldDominationExperimental</packageId>
             <displayName>World Domination 2.0</displayName>
@@ -23,21 +23,25 @@
     </modDependencies>
     <loadAfter>
         <li>RegionsAndSocieties.Core</li>
+        <li>RegionsAndSocieties.CoreRP2</li>
         <li>TSA.WorldDominationExperimental</li>
     </loadAfter>
-    <description>Version: v0.1.0
+    <description>Version: v0.2.0
 
 Compatibility patch: World Domination 2.0 bases, turrets and travelers are classified, populated and owned under Regions and Societies territory rules.
 
 Features:
-- Typed sorting: travelers (raids, drop pods, road builders, purchase parties) count as caravans; WD outposts hold ground with their real pawn count as population.
+- Typed sorting: travelers (raids, drop pods, road builders, purchase parties) count as caravans; WD outposts hold ground as outposts.
+- World Domination stays authoritative: this patch classifies WD objects under Regions and Societies territory rules but never resizes them - WD's own settlement grades and outpost mechanics are untouched.
 - Turrets hold ground: automated turrets classify as military installations that hold territory.
 - Ruins release territory: a destroyed World Domination settlement becomes scenery and stops claiming its region.
 
-Requires: Regions and Societies and World Domination 2.0. No settings of its own - governance toggles live in Regions and Societies.
+Requires: Regions and Societies (either the standard or the Realistic Planets 2 edition) and World Domination 2.0. No settings of its own - governance toggles live in Regions and Societies.
 
---- Changelog (v0.1.0) ---
-- Initial release: World Domination integration extracted from Regions and Societies core into a typed compatibility patch binding World Domination's assembly directly.
+--- Changelog (v0.2.0) ---
+- Works with both Regions and Societies editions: the hard dependency on the standard edition is gone, so Realistic Planets 2 edition players no longer see a false "missing dependency" warning. With no edition loaded at all, the mod now logs a plain warning naming both editions instead of erroring.
+- World Domination stays authoritative: the patch classifies WD objects under territory rules but no longer resizes them - outposts no longer weigh their pawn count into Regions and Societies sizing, and WD's own settlement grades and mechanics are untouched.
+- Groundwork (dormant): the WD settlement grade -> territory tier mapping is implemented and ships disabled; it goes live in a future release after in-game validation.
 
 Source: https://github.com/Regions-and-societies/World-Domination-CP
 Support development: https://ko-fi.com/archdukejim</description>
