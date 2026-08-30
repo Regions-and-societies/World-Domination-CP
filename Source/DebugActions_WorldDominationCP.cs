@@ -18,6 +18,10 @@ namespace RegionsAndSocieties.WorldDominationCP
         {
             var sb = new StringBuilder();
             sb.AppendLine("--- WD-CP world-object dump ---");
+            if (WorldDominationAdapter.SizingSuppressed)
+            {
+                sb.AppendLine("  (sizing suppressed this release: WD settlements are not graded and outposts report no population — level/pop show '-' by design)");
+            }
             int count = 0;
             var objects = Find.WorldObjects != null ? Find.WorldObjects.AllWorldObjects : null;
             if (objects != null)

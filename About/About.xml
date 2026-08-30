@@ -31,7 +31,8 @@
 Compatibility patch: World Domination 2.0 bases, turrets and travelers are classified, populated and owned under Regions and Societies territory rules.
 
 Features:
-- Typed sorting: travelers (raids, drop pods, road builders, purchase parties) count as caravans; WD outposts hold ground with their real pawn count as population.
+- Typed sorting: travelers (raids, drop pods, road builders, purchase parties) count as caravans; WD outposts hold ground as outposts.
+- World Domination stays authoritative: this patch classifies WD objects under Regions and Societies territory rules but never resizes them - WD's own settlement grades and outpost mechanics are untouched.
 - Turrets hold ground: automated turrets classify as military installations that hold territory.
 - Ruins release territory: a destroyed World Domination settlement becomes scenery and stops claiming its region.
 

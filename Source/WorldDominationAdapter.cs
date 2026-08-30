@@ -20,7 +20,8 @@ namespace RegionsAndSocieties.WorldDominationCP
     /// <see cref="WorldObject_Traveler"/> subclasses — raids, drop pods, road builders, purchase
     /// parties. They move; they are caravans, not holdings. The typed <c>is</c> check covers every
     /// subclass, which the old name-contains rule only approximated.</item>
-    /// <item><b>Settlement grade is a live typed field, and this adapter now reports it.</b> The
+    /// <item><b>Settlement grade is a live typed field, and this adapter can report it —
+    /// suppressed for 0.2.0, see <see cref="SizingSuppressed"/>.</b> The
     /// <c>TSA_Generic_T1_Farming</c>…<c>T4_Citadel</c> names are <c>KCSG.SettlementLayoutDef</c>s used
     /// at map generation, not the world object's def — WD's faction bases are vanilla
     /// <c>Settlement</c>s. Grade lives on a <see cref="CompViralSpread"/> world-object comp that WD
@@ -46,6 +47,14 @@ namespace RegionsAndSocieties.WorldDominationCP
     /// </summary>
     public class WorldDominationAdapter : WorldObjectAdapterBase
     {
+        // 0.2.0 ships classification only: the sizing inputs (settlement grade → level, outpost
+        // pawn count → population) are suppressed so R&S never resizes WD holdings — World
+        // Domination's own settlement and outpost mechanics stay fully authoritative. The
+        // implementations below stay compiled and tested-by-build; flipping this to false
+        // re-enables them, targeted at the next release (#3 in-game validation, #4 outpost
+        // grading). readonly rather than const so the gated code stays reachable to the compiler.
+        internal static readonly bool SizingSuppressed = true;
+
         public override string AdapterId { get { return "worlddomination"; } }
 
         public override string DisplayName { get { return "World Domination 2.0"; } }
@@ -76,9 +85,14 @@ namespace RegionsAndSocieties.WorldDominationCP
             // identically. We take ownership only of the WD-managed ones so that core will consult
             // this adapter's TryGetLevel for them: core reads a level only from the adapter that
             // also classifies the object (WorldObjectAdapterRegistry's SafeRecognises gate). Every
-            // other settlement still falls through to the vanilla adapter, unchanged.
-            CompViralSpread ignored;
-            if (TryGetWdManagedSettlement(obj, out ignored)) { kind = WorldObjectKind.Settlement; return true; }
+            // other settlement still falls through to the vanilla adapter, unchanged. While sizing
+            // is suppressed there is no level to feed, so the takeover is pointless — leave WD's
+            // bases to the vanilla adapter exactly as 0.1.0 did.
+            if (!SizingSuppressed)
+            {
+                CompViralSpread ignored;
+                if (TryGetWdManagedSettlement(obj, out ignored)) { kind = WorldObjectKind.Settlement; return true; }
+            }
 
             // Anything this mod introduces later: an outpost is the safer default than a settlement,
             // since outposts carry less territorial weight than settlements do.
@@ -90,6 +104,8 @@ namespace RegionsAndSocieties.WorldDominationCP
         public override bool TryGetPopulation(WorldObject obj, out int population)
         {
             population = 0;
+            if (SizingSuppressed) return false;
+
             var outpost = obj as WorldObject_WD_Outpost;
             if (outpost == null) return false;
 
@@ -110,11 +126,13 @@ namespace RegionsAndSocieties.WorldDominationCP
         /// settlement at MajorCity and reserves Metropolis for its own faction-capital economy — so
         /// WD's four grades sit 1:1 on R&amp;S tiers 1–4 with nothing squeezed. Level only ever raises a
         /// settlement's size (core takes the max of headcount and level), never shrinks it.
+        /// Suppressed for 0.2.0 (<see cref="SizingSuppressed"/>).
         /// </summary>
         public override bool TryGetLevel(WorldObject obj, out int level, out int maxLevel)
         {
             level = 0;
             maxLevel = 0;
+            if (SizingSuppressed) return false;
 
             CompViralSpread comp;
             if (!TryGetWdManagedSettlement(obj, out comp)) return false;
