@@ -1,4 +1,4 @@
-[b]Version:[/b] v0.2.0 (Target: RimWorld 1.6)
+[b]Version:[/b] v0.2.1 (Target: RimWorld 1.6)
 
 [img]https://i.imgur.com/6JSqNqJ.png[/img]
 
@@ -16,11 +16,11 @@ Compatibility patch: [url=https://steamcommunity.com/sharedfiles/filedetails/?id
 
 The patch binds World Domination's assembly directly, so type drift is a compile error rather than a silent zero in-game. No settings of its own - installed means enabled.
 
-[h2]Changelog (v0.2.0)[/h2]
+[h2]Changelog (v0.2.1)[/h2]
 [list]
-[*] Works with both Regions and Societies editions: the hard dependency on the standard edition is gone, so Realistic Planets 2 edition players no longer see a false "missing dependency" warning. With no edition loaded at all, the mod now logs a plain warning naming both editions instead of erroring.
-[*] World Domination stays authoritative: the patch classifies WD objects under territory rules but no longer resizes them - outposts no longer weigh their pawn count into Regions and Societies sizing, and WD's own settlement grades and mechanics are untouched.
-[*] Groundwork (dormant): the WD settlement grade -> territory tier mapping is implemented and ships disabled; it goes live in a future release after in-game validation.
+[*] RimSort install fix: the release zip now carries the mod files at its root, so RimSort no longer creates a broken nested folder on install. No gameplay changes.
+[*] New Workshop preview: series-banner design naming the patched mod, with a version stamp.
+[*] Mod author is now credited as archdukejim.
 [/list]
 
 [h2]Requirements[/h2]
